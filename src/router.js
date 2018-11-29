@@ -12,5 +12,10 @@ export default new Router({
       name: 'Index',
       component: () => import('./views/Index.vue'),
     },
+    {
+      path: '/admin',
+      name: 'Admin',
+      component: () => import('./views/Admin.vue'),
+    },
   ],
 });

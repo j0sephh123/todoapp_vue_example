@@ -4,6 +4,7 @@
 
     <div class="navbar-start">
       <router-link class="navbar-item" to="/" exact="">Home</router-link>
+      <router-link class="navbar-item" to="/admin" exact="">Administration</router-link>
     </div>
 
     <div class="navbar-end">
@@ -18,7 +19,7 @@
 
   <div class="columns section">
     <div class="column is-4">
-      sidebar
+      <side-nav></side-nav>
     </div>
     <div class="column is-8">
       <router-view></router-view>
@@ -30,8 +31,12 @@
 
 <script>
 import { mapGetters } from "vuex";
+import SideNavVue from './SideNav.vue';
 
 export default {
+  components: {
+    sideNav: SideNavVue,
+  },
   data() {
     return {
       

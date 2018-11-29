@@ -4,14 +4,18 @@ import router from './router'
 import store from './store/store'
 import ApiService from '@/common/api'
 
-
+// bulma
 import '../node_modules/bulma/css/bulma.css'
+// bulma extensions
+import '../node_modules/bulma-extensions/bulma-accordion/dist/css/bulma-accordion.min.css'
 
 import '@/assets/loading.css'
 import '@/assets/loading-btn.css'
 
 import '@fortawesome/fontawesome-free';
 import '../node_modules/@fortawesome/fontawesome-free/css/all.css'
+
+
 
 ApiService.init();
 
