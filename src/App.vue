@@ -18,10 +18,10 @@
   </nav>
 
   <div class="columns section">
-    <div class="column is-4">
+    <div class="column is-3">
       <side-nav></side-nav>
     </div>
-    <div class="column is-8">
+    <div class="column is-9">
       <router-view></router-view>
     </div>
   </div>

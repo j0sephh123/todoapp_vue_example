@@ -16,23 +16,22 @@
 
       <div class="tabs is-centered is-boxed">
         <ul>
-          <li class="is-active"><a>
-            <span class="icon is-small"><i class="fas fa-image"></i></span>
-            <span>Pictures</span>
-          </a></li>
-          <li><a>
-            <span class="icon is-small"><i class="fas fa-music"></i></span>
-            <span>Music</span>
-          </a></li>
+          <li
+            @click="$store.commit('setFilter', {tab: t, value: 'type'})" 
+            v-for="t in tabs"
+            :key="t.id"
+            :class="t.active ? 'is-active' : ''">
+            <a><span>{{t.filter}}</span></a>
+          </li>
         </ul>
       </div>
       <a
-        v-for="w in workers"
+        v-for="w in filteredWorkers"
         :key="w.id"  
         class="panel-block"> <!-- is-active -->
         <div>
           <span class="title is-4">{{w.name}}</span>
-          <span class="subtitle">title...</span>
+          <span class="subtitle">{{w.position}}</span>
         </div>
         
 
@@ -70,7 +69,22 @@ export default {
   computed: {
     ...mapGetters({
       workers: 'workers',
+      tabs: 'tabs',
+      filter: 'filter',
     }),
+    filteredWorkers() {
+      const {type} = this.filter;
+      let newWorkers = this.workers.filter(w => {
+        if(type === 'All') {
+          return w
+        }
+        return w.type === type; 
+      })
+
+      return newWorkers.filter(worker => {
+        return worker.name.toUpperCase().match(this.search.toUpperCase());
+      });
+    },
     search: {
       get() {
         return this.$store.getters['todos/search']

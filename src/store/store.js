@@ -16,17 +16,17 @@ export default new Vuex.Store({
       management: [
         // First.Line management
         {
-          id: 1, name: 'Supervisor', type: 'First.Line management',
+          id: 1, position: 'Supervisor', type: 'First Line management',
           active: true,
           employees: [
             {id: 1.1, name: 'Octavio'},
             {id: 1.2, name: 'Lina'},
             {id: 1.3, name: 'Agueda'},
           ],
-          jobDescription: 'A supervisor is at the highest rank of a first.line management. They act as a communicator between the first.line employees and the middle management of the company management hierarchy. They supervise all the essential aspects of a project.',
+          jobDescription: 'A supervisor is at the highest rank of a first line management. They act as a communicator between the first.line employees and the middle management of the company management hierarchy. They supervise all the essential aspects of a project.',
         },
         {
-          id: 2, name: 'Office Manager', type: 'First.Line management',
+          id: 2, position: 'Office Manager', type: 'First Line management',
           active: false,
           employees: [
             {id: 2.1, name: 'Dulce'},
@@ -36,7 +36,7 @@ export default new Vuex.Store({
           jobDescription: 'Office managers coordinate the various operations performed by the employees of the corporation. They also undertake the payroll duties of the company.',
         },
         {
-          id: 3, name: 'Team Leader', type: 'First.Line management',
+          id: 3, position: 'Team Leader', type: 'First Line management',
           active: false,
           employees: [
             {id: 3.1, name: 'Ainoa'},
@@ -47,7 +47,7 @@ export default new Vuex.Store({
         },
         // Middle Management
         {
-          id: 4, name: 'General Manager', type: 'Middle Management',
+          id: 4, position: 'General Manager', type: 'Middle Management',
           active: false,
           employees: [
             {id: 4.1, name: 'Eligio'},
@@ -57,7 +57,7 @@ export default new Vuex.Store({
           jobDescription: 'A general manager is the top tier officer of the middle management of the company management hierarchy. A general manager undertakes job functions relating to different sections such as sales and marketing, client relations, operation management, financial management and team management etc.',
         },
         {
-          id: 5, name: 'Regional Manager', type: 'Middle Management',
+          id: 5, position: 'Regional Manager', type: 'Middle Management',
           active: false,
           employees: [
             {id: 5.1, name: 'Ceferino'},
@@ -68,7 +68,7 @@ export default new Vuex.Store({
         },
         // Top Management
         {
-          id: 6, name: 'Chief Executive Officer', type: 'Top Management',
+          id: 6, position: 'Chief Executive Officer', type: 'Top Management',
           active: false,
           employees: [
             {id: 6.1, name: 'Seve'},
@@ -78,7 +78,7 @@ export default new Vuex.Store({
           jobDescription: 'A chief executive officer (CEO) undertakes the most important activities of the organization. In some mid.range companies, the chief executive officer is the highest position. The CEO reports to the board of directors regarding the various functions of the organization.',
         },
         {
-          id: 7, name: 'Board of Directors', type: 'Top Management',
+          id: 7, position: 'Board of Directors', type: 'Top Management',
           active: false,
           employees: [
             {id: 7.1, name: 'Segismundo'},
@@ -88,7 +88,7 @@ export default new Vuex.Store({
           jobDescription: ' The Board of Directors is a group of stakeholders and they are the main decision.makers of the organization. They choose the chief executive officer. They also review the various on.going activities of the company at regular intervals of time.',
         },
         {
-          id: 8, name: 'Vice.President', type: 'Top Management',
+          id: 8, position: 'Vice.President', type: 'Top Management',
           active: false,
           employees: [
             {id: 8.1, name: 'Jenny'},
@@ -98,7 +98,7 @@ export default new Vuex.Store({
           jobDescription: 'The responsibilities of a vice.president vary as per the size of the organization and the specific area of expertise of the professional. Generally, they account for organizing the meeting of the board members and develop reports on the accomplishments of the business organization.',
         },
         {
-          id: 9, name: 'Chairman', type: 'Top Management',
+          id: 9, position: 'Chairman', type: 'Top Management',
           active: false,
           employees: [
             {id: 9.1, name: 'Eloy'},
@@ -111,7 +111,17 @@ export default new Vuex.Store({
       adminPanel: [
         {id: 1, name: 'Settings', active: false, data: 1,},
         {id: 2, name: 'Manage your team',  active: false, data: 2},
-      ]
+      ],
+    },
+    tabs: [
+      {id: 1, filter: 'All', active: true},
+      {id: 2, filter: 'First Line management', active: false,},
+      {id: 3, filter: 'Middle Management', active: false,},
+      {id: 4, filter: 'Top Management', active: false,},
+    ],
+    filter: {
+      position: '', //position: 'Supervisor', type: 'First Line management'
+      type: '',
     }
   },
   mutations: {
@@ -142,16 +152,41 @@ export default new Vuex.Store({
         })
       }
     },
+    setFilter(state, {tab, value}) {
+      if(value === 'type') {
+        state.tabs = state.tabs.map(t => {
+          t.active = false;
+          return t;
+        }); // set all active to false.
+
+        state.tabs = state.tabs.map(t => {
+          if(tab.id === t.id) {
+            t.active = true;
+          }
+          return t;
+        }) // toggle active
+
+        // set filter type
+        state.filter.type = tab.filter;
+      }
+    },
+    
   },
   actions: {
 
   },
   getters: {
     workers: state => state.sideNav.management.reduce((acc, curVal, curIndex, arr) => {
-      return [...acc,...curVal.employees];
+      return [...acc,...curVal.employees.map(employee => {
+        employee['position'] = curVal.position;
+        employee['type'] = curVal.type;
+        return employee;
+      })];
     }, []),
     management: state => state.sideNav.management,
     adminPanel: state => state.sideNav.adminPanel,
     current: state => state.sideNav.management.filter(item => item.active)[0],
+    tabs: state => state.tabs,
+    filter: state => state.filter,
   }
 })

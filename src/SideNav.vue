@@ -7,7 +7,7 @@
           @click="$store.commit('sideNavClick', {type: 'management', arg: m})"
           v-for="m in management" 
           :key="m.id"
-        ><a :class="m.active ? 'is-active' : ''">{{m.name}}</a></li>
+        ><a :class="m.active ? 'is-active' : ''">{{m.position}}</a></li>
       </ul>
     </div>
 
