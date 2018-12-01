@@ -1,13 +1,8 @@
-import api from '@/common/api';
 const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
 
 const todos = {
   namespaced: true,
   state: {     
-    todos: [
-      
-
-    ],
     search: '',
   },
   mutations: {
@@ -19,11 +14,6 @@ const todos = {
     
   },
   getters: {
-    todos: (state) => 
-    state.todos.filter(todo => 
-      todo.name.match(state.search)
-    ),
-    one: state => state.one,
     search: state => state.search,
   }
 }

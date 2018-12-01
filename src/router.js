@@ -13,9 +13,14 @@ export default new Router({
       component: () => import('./views/Index.vue'),
     },
     {
-      path: '/admin',
-      name: 'Admin',
-      component: () => import('./views/Admin.vue'),
+      path: '/dota',
+      name: 'Dota',
+      component: () => import('./views/Dota.vue'),
+    },
+    {
+      path: '/dota/:id',
+      name: 'HeroPage',
+      component: () => import('./views/HeroPage.vue'),
     },
   ],
 });

@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 
 import todos from './todos';
+import dota from './dota';
 
 const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
 
@@ -9,7 +10,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   modules: {
-    todos,
+    todos, dota,
   },
   state: {
     sideNav: {
@@ -114,14 +115,36 @@ export default new Vuex.Store({
       ],
     },
     tabs: [
-      {id: 1, filter: 'All', active: true},
-      {id: 2, filter: 'First Line management', active: false,},
-      {id: 3, filter: 'Middle Management', active: false,},
-      {id: 4, filter: 'Top Management', active: false,},
+      {id: 1, filter: 'All', active: true, children: [
+        {id: 1.1, filter: 'Supervisor'},
+        {id: 1.2, filter: 'Office Manager'},
+        {id: 1.3, filter: 'Team Leader'},
+        {id: 1.4, filter: 'General Manager'},
+        {id: 1.5, filter: 'Regional Manager'},
+        {id: 1.6, filter: 'Chief Executive Officer'},
+        {id: 1.7, filter: 'Board of Directors'},
+        {id: 1.8, filter: 'Vice.President'},
+        {id: 1.9, filter: 'Chairman'},
+      ]},
+      {id: 2, filter: 'First Line management', active: false, children: [
+        {id: 2.1, filter: 'Supervisor'},
+        {id: 2.2, filter: 'Office Manager'},
+        {id: 2.3, filter: 'Team Leader'},
+      ]},
+      {id: 3, filter: 'Middle Management', active: false, children: [
+        {id: 3.4, filter: 'General Manager'},
+        {id: 3.5, filter: 'Regional Manager'},
+      ]},
+      {id: 4, filter: 'Top Management', active: false, children: [
+        {id: 4.6, filter: 'Chief Executive Officer'},
+        {id: 4.7, filter: 'Board of Directors'},
+        {id: 4.8, filter: 'Vice.President'},
+        {id: 4.9, filter: 'Chairman'},
+      ]},
     ],
     filter: {
-      position: '', //position: 'Supervisor', type: 'First Line management'
-      type: '',
+      position: 'All', //position: 'Supervisor', type: 'First Line management'
+      type: 'All',
     }
   },
   mutations: {
@@ -168,9 +191,15 @@ export default new Vuex.Store({
 
         // set filter type
         state.filter.type = tab.filter;
+      } else if (value === 'position') {
+        if(tab === 'All') {
+          console.log('tab === All');
+          state.filter.position = 'All';
+        } else {
+          state.filter.position = tab.filter;
+        }
       }
     },
-    
   },
   actions: {
 
