@@ -19,27 +19,8 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
-
 export default {
   
-  data() {
-    return {
-      
-    };
-  },
-  methods: {},
-  computed: {
-    ...mapGetters({
-      
-    }),
-  },
-  watch: {
-    
-  },
-  async mounted() {
-    
-  }
 };
 </script>
 

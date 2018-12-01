@@ -22,6 +22,10 @@ const dota = {
       {name: 'Agility', active: false},
       {name: 'Intelligence', active: false},
     ],
+    modal: {
+      active: false,
+      element: [],
+    },
   },
   mutations: {
     search(state, data) {
@@ -45,7 +49,11 @@ const dota = {
 
         return item;
       })
-    }
+    },
+    modal(state, {element, active}) {
+      state.modal.active = active;
+      state.modal.element = element;
+    },
   },
   actions: {
 
@@ -70,6 +78,7 @@ const dota = {
     },
     tabs: state => state.tabs,
     activeTab: state => state.tabs.filter(t => t.active)[0],
+    modal: state => state.modal,
   }
 }
 

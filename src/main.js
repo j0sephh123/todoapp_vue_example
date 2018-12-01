@@ -5,8 +5,6 @@ import store from './store/store'
 
 // bulma
 import '../node_modules/bulma/css/bulma.css'
-// bulma extensions
-import '../node_modules/bulma-extensions/bulma-accordion/dist/css/bulma-accordion.min.css'
 
 import '@/assets/loading.css'
 import '@/assets/loading-btn.css'

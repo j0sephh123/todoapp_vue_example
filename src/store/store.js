@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
-import todos from './todos';
 import dota from './dota';
 
 const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
@@ -10,7 +9,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   modules: {
-    todos, dota,
+    dota,
   },
   state: {
     sideNav: {

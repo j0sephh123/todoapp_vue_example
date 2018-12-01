@@ -13,7 +13,7 @@
 
       <div class="panel-block">
         <button class="button is-link is-outlined is-fullwidth">
-          Useless button
+          Create hero
         </button>
       </div> <!-- button -->
     </nav>

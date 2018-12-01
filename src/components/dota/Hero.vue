@@ -1,8 +1,8 @@
 <template>
   <div>
     <transition-group
-      
-    >
+
+      :css="false">
       <router-link
         :to="{path: `/dota/${hero.id}`}"
         v-for="hero in heroes"
@@ -14,13 +14,18 @@
         </div>
         
         <div>
-          <button class="button">Edit</button>
           <button
-            @click="$store.commit('dota/removeHero', hero)" 
+            @click.prevent="editHero(hero)" 
+            class="button">Edit</button>
+          <button
+            @click.prevent="removeHero(hero)" 
             class="button">Delete</button>
         </div>
       </router-link> 
     </transition-group>
+
+    <modal></modal>
+
   </div>
 </template>
 
@@ -28,19 +33,24 @@
 <script>
 import {mapMutations, mapGetters, mapActions} from 'vuex'
 import { TweenMax } from 'gsap/TweenMax'
+import ModalVue from './Modal.vue';
 
 export default {
+  components: {
+    modal: ModalVue,
+  },
   data() {
     return {
       tweeningValue: 0
     }
   },
   methods: {
-    leave() {
-      // console.log(this);
-      // TweenMax.to(this.$el, 0.5, {x: 50})
-      
-    }
+    editHero(hero) {
+      this.$store.commit('dota/modal', {element: hero, active: true})
+    },
+    removeHero(hero) {
+      this.$store.commit('dota/removeHero', hero)
+    },
   },
   computed: {
     ...mapGetters({
