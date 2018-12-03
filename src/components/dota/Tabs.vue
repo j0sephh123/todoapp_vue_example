@@ -3,7 +3,7 @@
     <ul>
       <li
         :class="t.active ? 'is-active' : ''"
-        @click="$store.commit('dota/setActiveTab', t)" 
+        @click="$store.commit('setActiveTab', t)" 
         v-for="t in tabs"
         :key="t.name"
         ><a><span>{{t.name}}</span></a></li>
@@ -17,7 +17,7 @@ import {mapGetters} from 'vuex'
 export default {
   computed: {
     ...mapGetters({
-      tabs: 'dota/tabs',
+      tabs: 'tabs',
     })
   }
 }

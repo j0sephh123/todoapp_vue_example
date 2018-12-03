@@ -2,6 +2,7 @@
   <div>
     <nav class="panel">
 
+
       <search-component></search-component>
       <!-- header and search bar -->
 
@@ -12,9 +13,12 @@
       <!-- heroes -->
 
       <div class="panel-block">
-        <button class="button is-link is-outlined is-fullwidth">
+        <router-link
+          tag="button"
+          to="snippets/create"
+          class="button is-link is-outlined is-fullwidth">
           Create hero
-        </button>
+        </router-link>
       </div> <!-- button -->
     </nav>
   </div>

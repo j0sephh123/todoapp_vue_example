@@ -13,14 +13,20 @@ export default new Router({
       component: () => import('./views/Index.vue'),
     },
     {
-      path: '/dota',
-      name: 'Dota',
-      component: () => import('./views/Dota.vue'),
+      path: '/snippets',
+      name: 'Snippets',
+      component: () => import('./views/Snippets.vue'),
     },
     {
-      path: '/dota/:id',
-      name: 'HeroPage',
-      component: () => import('./views/HeroPage.vue'),
+      path: '/snippets/create',
+      name: 'Create',
+      component: () => import('./views/Create.vue'),
     },
+    {
+      path: '/snippets/:id',
+      name: 'OneSnippet',
+      component: () => import('./views/OneSnippet.vue'),
+    },
+
   ],
 });

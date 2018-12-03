@@ -1,8 +1,8 @@
 <template>
   <div>
     <nav class="panel">
-      <p class="panel-heading">
-        Dota Heroes
+      <p class="title is-4 panel-heading">
+        Code Snippets
       </p> <!-- heading -->
       <div class="panel-block">
         <p class="control has-icons-left">
@@ -26,10 +26,10 @@ export default {
   computed: {
     search: {
       get() {
-        return this.$store.getters['dota/search']
+        return this.$store.getters.search;
       },
       set(val) {
-        this.$store.commit('dota/search', val);
+        this.$store.commit('search', val);
       }
     },
   }  

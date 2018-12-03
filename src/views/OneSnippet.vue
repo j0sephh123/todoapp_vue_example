@@ -24,7 +24,7 @@ export default {
   },
   computed: {
     ...mapGetters({
-      heroes: 'dota/heroes',
+      heroes: 'heroes',
     }),
   }
 }
