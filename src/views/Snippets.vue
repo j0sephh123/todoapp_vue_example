@@ -17,7 +17,7 @@
           tag="button"
           to="snippets/create"
           class="button is-link is-outlined is-fullwidth">
-          Create hero
+          Create Snippet
         </router-link>
       </div> <!-- button -->
     </nav>
@@ -26,14 +26,14 @@
 
 <script>
 
-import SearchVue from '../components/dota/Search.vue';
-import HeroVue from '../components/dota/Hero.vue';
-import TabsVue from '../components/dota/Tabs.vue';
+import SearchVue from '../components/snippets/Search.vue';
+import SnippetVue from '../components/snippets/Snippet.vue';
+import TabsVue from '../components/snippets/Tabs.vue';
 
 export default {
   components: {
     searchComponent: SearchVue,
-    hero: HeroVue,
+    hero: SnippetVue,
     tabs: TabsVue,
   },
 }

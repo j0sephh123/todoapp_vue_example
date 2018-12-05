@@ -2,7 +2,7 @@
   <div class="control has-icons-left">
     <div class="select is-fullwidth is-large is-rounded">
       <select v-model="category">
-        <option><i class="fab fa-java"></i>JavaScript</option>
+        <option>JavaScript</option>
         <option>Java</option>
         <option>Python</option>
       </select>

@@ -2,21 +2,21 @@
   <div>
     
     <router-link
-      :to="{path: `/snippets/${hero.id}`}"
-      v-for="hero in heroes"
-      :key="hero.id"  
+      :to="{path: `/snippets/${snippet.id}`}"
+      v-for="snippet in snippets"
+      :key="snippet.id"  
       class="panel-block">
       <div>
-        <span class="title is-4">{{hero.name}}</span>
-        <span class="subtitle">{{hero.attribute}}</span>
+        <span class="title is-4">{{snippet.name}}</span>
+        <span class="subtitle">{{snippet.category}}</span>
       </div>
       
       <div>
         <button
-          @click.prevent="editHero(hero)" 
+          @click.prevent="editSnippet(snippet)" 
           class="button">Edit</button>
         <button
-          @click.prevent="removeHero(hero)" 
+          @click.prevent="removeSnippet(snippet)" 
           class="button">Delete</button>
       </div>
     </router-link> 
@@ -42,16 +42,16 @@ export default {
     }
   },
   methods: {
-    editHero(hero) {
-      this.$store.commit('modal', {element: hero, active: true})
+    editSnippet(snippet) {
+      this.$store.commit('modal', {element: snippet, active: true})
     },
-    removeHero(hero) {
-      this.$store.commit('removeHero', hero)
+    removeSnippet(snippet) {
+      this.$store.commit('removeSnippet', snippet)
     },
   },
   computed: {
     ...mapGetters({
-      heroes: 'heroes',
+      snippets: 'snippets',
     })
   },
 }

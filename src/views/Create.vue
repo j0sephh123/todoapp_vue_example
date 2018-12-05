@@ -45,6 +45,29 @@
 import steps from '../../node_modules/bulma-extensions/bulma-steps/dist/js/bulma-steps.js';
 import FieldVue from '../components/steps/Field.vue';
 
+/* class Person {
+  constructor(name, age) {
+    this.name = name;
+    this.age = age;
+  }
+
+  save() {
+    console.log(this.name + ' saved.');
+  }
+
+}
+
+//button
+let tiny = new Person('tiny', 12);
+tiny.save();
+
+let lina = new Person('lina', 14);
+lina.save();
+
+let clinkz = new Person('clinkz', 15);
+clinkz.save(); */
+
+
 export default {
   components: {
     field: FieldVue,

@@ -1,7 +1,9 @@
 <template>
 <div class="field">
   <p class="control has-icons-left has-icons-right">
-    <input 
+    <input
+      v-validate="'required|name1'" 
+      name="name1"
       v-model="name" 
       class="input is-large" 
       type="text" 
@@ -12,11 +14,14 @@
     <span class="icon is-right">
       <i class="fas fa-check"></i>
     </span>
+    <span>Errors here() => {{ errors.first('name1') }}</span>
   </p>
 </div>
 </template>
 
 <script>
+// https://baianat.github.io/vee-validate/guide/syntax.html#rules-parameters
+
 export default {
   props: {
     step: String,

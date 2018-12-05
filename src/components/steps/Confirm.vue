@@ -8,6 +8,12 @@
 
 <script>
 export default {
-  
+  watch: {
+    '$store.state.redirect'(to, from) {
+      if(to) {
+        this.$router.push({path: '/snippets'})
+      }
+    }
+  }
 }
 </script>
